@@ -1,5 +1,5 @@
 drop table if exists ticketz;
-create table ticketz (
+create table tickets (
 	id serial,
 	class_name text,
 	supporter_name text,
@@ -11,7 +11,7 @@ create table ticketz (
 	date_info date
 );
 
-insert into ticketz (class_name, supporter_name, gender, stadium_name, ticket_price, match_name, time_info, date_info) 
+insert into tickets (class_name, supporter_name, gender, stadium_name, ticket_price, match_name, time_info, date_info) 
 values
 	('Economy', 'Agam', 'male', 'Jakarta International Stadium', 150000 , 'Indonesia vs Argentina', '19:05', '2024-10-03'),
 	('VVIP', 'Jose', 'male', 'Jakarta International Stadium', 500000 , 'Indonesia vs Argentina', '19:06', '2024-10-03'),
