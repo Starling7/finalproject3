@@ -7,7 +7,7 @@ list_gender = ['', 'male', 'female']
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://radityacr740:o8KrhDcWj4wN@ep-super-smoke-81752083.us-east-2.aws.neon.tech/fpmbddb")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS TICKET (id serial, class_name varchar, supporter_name varchar, gender char(25), \
+    query = text('CREATE TABLE IF NOT EXISTS TICKETZ (id serial, class_name varchar, supporter_name varchar, gender char(25), \
                                                        stadium_name varchar, ticket_price varchar, match_name text, time_info time, date_info date);')
     session.execute(query)
 
@@ -15,18 +15,18 @@ st.header('TICKET INDONESIA VS ARGENTINA')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
-    data = conn.query('SELECT * FROM ticket ORDER By id;', ttl="0").set_index('id')
+    data = conn.query('SELECT * FROM ticketz ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
 
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO ticket (class_name, supporter_name, gender, stadium_name, ticket_price, match_name, time_info, date_info) \
+            query = text('INSERT INTO ticketz (class_name, supporter_name, gender, stadium_name, ticket_price, match_name, time_info, date_info) \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
             session.execute(query, {'1':'', '2':'', '3':'', '4':'[]', '5':'', '6':'', '7':None, '8':None})
             session.commit()
 
-    data = conn.query('SELECT * FROM ticket ORDER By id;', ttl="0")
+    data = conn.query('SELECT * FROM ticketz ORDER By id;', ttl="0")
     for _, result in data.iterrows():        
         id = result['id']
         class_name_lama = result["class_name"]
@@ -54,7 +54,7 @@ if page == "Edit Data":
                 with col1:
                     if st.form_submit_button('UPDATE'):
                         with conn.session as session:
-                            query = text('UPDATE ticket \
+                            query = text('UPDATE ticketz \
                                           SET class_name=:1, supporter_name=:2, gender=:3, stadium_name=:4, \
                                           ticket_price=:5, match_name=:6, time_info=:7, date_info=:8 \
                                           WHERE id=:9;')
@@ -65,7 +65,7 @@ if page == "Edit Data":
                 
                 with col2:
                     if st.form_submit_button('DELETE'):
-                        query = text(f'DELETE FROM ticket WHERE id=:1;')
+                        query = text(f'DELETE FROM ticketz WHERE id=:1;')
                         session.execute(query, {'1':id})
                         session.commit()
                         st.experimental_rerun()
