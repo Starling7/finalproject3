@@ -1,17 +1,17 @@
 import streamlit as st
 from sqlalchemy import text
 
-list_class = ['', 'Economy', 'VIP', 'VVIP', 'Reguler']
+list_classyy = ['', 'Economy', 'VIP', 'VVIP', 'Reguler']
 list_gender = ['', 'male', 'female']
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://radityacr740:o8KrhDcWj4wN@ep-super-smoke-81752083.us-east-2.aws.neon.tech/fpmbddb")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS TICKETS (id serial, class_name varchar, supporter_name varchar, gender char(25), \
+    query = text('CREATE TABLE IF NOT EXISTS TICKETS (id serial, classy_name varchar, supporter_name varchar, gender char(25), \
                                                        stadium_name varchar, ticket_price varchar, match_name text, time_info time, date_info date);')
     session.execute(query)
 
-st.header('FOOTBALL TICKETS')
+st.header('TICKETS INDONESIA VS ARGENTINA')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
@@ -21,7 +21,7 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO tickets (class_name, supporter_name, gender, stadium_name, ticket_price, match_name, time_info, date_info) \
+            query = text('INSERT INTO tickets (classy_name, supporter_name, gender, stadium_name, ticket_price, match_name, time_info, date_info) \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
             session.execute(query, {'1':'', '2':'', '3':'', '4':'[]', '5':'', '6':'', '7':None, '8':None})
             session.commit()
@@ -29,7 +29,7 @@ if page == "Edit Data":
     data = conn.query('SELECT * FROM tickets ORDER By id;', ttl="0")
     for _, result in data.iterrows():        
         id = result['id']
-        class_name_lama = result["class_name"]
+        classy_name_lama = result["classy_name"]
         supporter_name_lama = result["supporter_name"]
         gender_lama = result["gender"]
         stadium_name_lama = result["stadium_name"]
@@ -41,7 +41,7 @@ if page == "Edit Data":
         with st.expander(f'a.n. {supporter_name_lama}'):
             with st.form(f'data-{id}'):
                 supporter_name_baru = st.text_input("supporter_name", supporter_name_lama)
-                class_name_baru = st.selectbox("class_name", list_class, list_class.index(class_name_lama))
+                classy_name_baru = st.selectbox("classy_name", list_classy, list_classy.index(classy_name_lama))
                 gender_baru = st.selectbox("gender", list_gender, list_gender.index(gender_lama))
                 stadium_name_baru = st.text_input("stadium_name", stadium_name_lama)
                 ticket_price_baru = st.text_input("ticket_price", ticket_price_lama)
@@ -55,10 +55,10 @@ if page == "Edit Data":
                     if st.form_submit_button('UPDATE'):
                         with conn.session as session:
                             query = text('UPDATE tickets \
-                                          SET class_name=:1, supporter_name=:2, gender=:3, stadium_name=:4, \
+                                          SET classy_name=:1, supporter_name=:2, gender=:3, stadium_name=:4, \
                                           ticket_price=:5, match_name=:6, time_info=:7, date_info=:8 \
                                           WHERE id=:9;')
-                            session.execute(query, {'1':class_name_baru, '2':supporter_name_baru, '3':gender_baru, '4':str(stadium_name), 
+                            session.execute(query, {'1':classy_name_baru, '2':supporter_name_baru, '3':gender_baru, '4':str(stadium_name), 
                                                     '5':ticket_price_baru, '6':match_name_baru, '7':time_info_baru, '8':date_info_baru, '9':id})
                             session.commit()
                             st.experimental_rerun()
