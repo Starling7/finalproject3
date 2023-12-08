@@ -41,7 +41,6 @@ if page == "Edit Data":
         with st.expander(f'a.n. {supporter_name_lama}'):
             with st.form(f'data-{id}'):
                 supporter_name_baru = st.text_input("supporter_name", supporter_name_lama)
-                classy_name_baru = st.selectbox("classy_name", list_classy, list_classy.index(classy_name_lama))
                 gender_baru = st.selectbox("gender", list_gender, list_gender.index(gender_lama))
                 stadium_name_baru = st.text_input("stadium_name", stadium_name_lama)
                 ticket_price_baru = st.text_input("ticket_price", ticket_price_lama)
