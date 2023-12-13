@@ -1,4 +1,4 @@
-drop table if exists ticketz;
+drop table if exists tickets;
 create table tickets (
 	id serial,
 	class_name text,
