@@ -18,8 +18,5 @@ values
 	('VVIP', 'Malik', 'male', 'Jakarta International Stadium', 500000 , 'Indonesia vs Argentina', '19:04', '2024-10-03'),
 	('VVIP', 'Yoze', 'female', 'Jakarta International Stadium', 500000 , 'Indonesia vs Argentina', '19:20', '2024-10-03'),
 	('Economy', 'Ahmad', 'male', 'Jakarta International Stadium', 150000 , 'Indonesia vs Argentina', '19:10', '2024-10-03'),
-	('Regular', 'Ammar', 'male', 'Jakarta International Stadium', 250000 , 'Indonesia vs Argentina', '19:11', '2024-10-03'),
-	('Economy', 'Bani', 'male', 'Jakarta International Stadium', 150000 , 'Indonesia vs Argentina', '19:07', '2024-10-03'),
-	('Regular', 'Furki', 'female', 'Jakarta International Stadium', 250000 , 'Indonesia vs Argentina', '19:06', '2024-10-03'),
-	('VIP', 'El Ruby', 'male', 'Jakarta International Stadium', 350000 , 'Indonesia vs Argentina', '19:37', '2024-10-03')
+	('Regular', 'Ammar', 'male', 'Jakarta International Stadium', 250000 , 'Indonesia vs Argentina', '19:11', '2024-10-03')
 	;
