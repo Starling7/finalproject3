@@ -1,7 +1,6 @@
 import streamlit as st
 from sqlalchemy import text
 
-list_gender = ['', 'male', 'female']
 
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://radityacr740:o8KrhDcWj4wN@ep-super-smoke-81752083.us-east-2.aws.neon.tech/fpmbddb")
@@ -41,7 +40,7 @@ if page == "Edit Data":
             with st.form(f'data-{id}'):
                 supporter_name_baru = st.text_input("supporter_name", supporter_name_lama)
                 tribune_name_baru = st.text_input("tribune_name", tribune_name_lama)
-                gender_baru = st.selectbox("gender", list_gender, list_gender.index(gender_lama))
+                gender_baru = st.text_input("gender",gender_lama)
                 stadium_name_baru = st.text_input("stadium_name", stadium_name_lama)
                 ticket_price_baru = st.text_input("ticket_price", ticket_price_lama)
                 match_name_baru = st.text_input("match_name", match_name_lama)
