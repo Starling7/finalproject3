@@ -1,6 +1,5 @@
 import streamlit as st
 from sqlalchemy import text
-import pandas as pd
 
 list_tribune = ['', 'Economy', 'Regular', 'VIP', 'VVIP']
 list_gender = ['', 'male', 'female']
