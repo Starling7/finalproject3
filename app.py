@@ -1,6 +1,5 @@
 import streamlit as st
 from sqlalchemy import text
-import matplotlib.pyplot as plt
 import pandas as pd
 
 list_tribune = ['', 'Economy', 'Regular', 'VIP', 'VVIP']
