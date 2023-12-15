@@ -45,7 +45,7 @@ if page == "Edit Data":
             gender_baru = st.selectbox("gender", list_gender, list_gender.index(gender_lama))
             stadium_name_baru = st.selectbox("stadium_name", list_stadium, list_stadium.index(stadium_name_lama))
             ticket_price_baru = st.selectbox("ticket_price", list_price, list_price.index(ticket_price_lama))
-            match_name_baru = st.selectbox("match_name", list_match, list_match.index(match_name_lama))
+            match_name_baru = st.selectbox("match_name", list_match, list_match.index(match_name_lama) if match_name_lama in list_match else 0)
             date_info_baru = st.date_input("date_info", date_info_lama)
 
             if st.button('UPDATE'):
