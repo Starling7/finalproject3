@@ -1,5 +1,7 @@
 import streamlit as st
 from sqlalchemy import text
+import matplotlib.pyplot as plt
+import pandas as pd
 
 list_tribune = ['', 'Economy', 'Regular', 'VIP', 'VVIP']
 list_gender = ['', 'male', 'female']
@@ -34,7 +36,14 @@ if page == "Edit Data":
                                 VALUES (:1, :2, :3, :4, :5, :6, :7);')
             conn.execute(query_insert, {'1': tribune_name_baru, '2': supporter_name_baru, '3': gender_baru, '4': str(stadium_name_baru),
                                         '5': ticket_price_baru, '6': match_name_baru, '7': date_info_baru})
+if page == "Grafik":
+    st.subheader("Grafik Data Tiket Pertandingan Sepatu")
 
+    # Ambil data dari database
+    data = conn.execute('SELECT * FROM tickets;').fetchall()
+    df = pd.DataFrame(data, columns=['id', 'tribune_name', 'supporter_name', 'gender', 'stadium_name', 'ticket_price', 'match_name', 'date_info'])
+  
+    st.bar_chart(df['tribune_name'].value_counts())
     data = conn.execute('SELECT * FROM tickets ORDER By id;').fetchall()
     for result in data:
         id, tribune_name_lama, supporter_name_lama, gender_lama, stadium_name_lama, ticket_price_lama, match_name_lama, date_info_lama = result
